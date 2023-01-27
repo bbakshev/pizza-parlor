@@ -52,25 +52,43 @@ let order = new Order();
 let pizzaSelect = new Pizza();
 
 function displayOrderSummary(event) {
-  event.preventDefault();
+event.preventDefault();
 
-  const orderName = document.getElementById("name").value;
-  const orderPhoneNum = document.getElementById("phone-number").value;
-  order = (orderName, orderPhoneNum)
+const nameInput = document.getElementById("name").value;
+const phoneNumberInput = document.getElementById("phone-number").value;
+const pizzaSizeInputs = document.getElementsByName("pie-size").value;
+const pizzaToppingInputs = document.getElementsByName("toppings");
 
-  let selectedPizzaSize = document.querySelector('input[name="pie-size"]:checked').value;
-  let selectedTopping = document.querySelector('input[name="toppings"]:checked').value;
+order = new Order(nameInput, phoneNumberInput);
+
+let selectedPizzaSize;
+  for (let i = 0; i < pizzaSizeInputs.length; i++) {
+    if (pizzaSizeInputs[i].checked) {
+      selectedPizzaSize = pizzaSizeInputs[i].value;
+    }
+  }
 
   pizzaSelect = new Pizza(selectedPizzaSize);
-  pizzaSelect.addToppings(selectedTopping);
+
+  let selectedToppings = [];
+  for (let i = 0; i < pizzaToppingInputs.length; i++) {
+    if (pizzaToppingInputs[i].checked) {
+      selectedToppings.push(pizzaToppingInputs[i].value);
+    }
+  }
+
+  pizzaSelect.addToppings(selectedToppings);
   order.pizzaSelection(pizzaSelect);
 
-  document.querySelector("span#name").innerText = orderName;
-  document.querySelector("span#phone-number").innerText = orderPhoneNum;
-  document.getElementById("span#pie-size").innerText = selectedPizzaSize;
-  document.getElementById("span#pizza-toppings-toppings").innerText = selectedTopping;
-  document.getElementById("span#total-order").innerText = "$" + order.orderSummary();
+
+document.querySelector("span#name").innerText = nameInput;
+document.querySelector("span#phone-number").innerText = phoneNumberInput;
+document.getElementById("span#pie-size").innerText = selectedPizzaSize;
+document.getElementById("span#pizza-toppings-toppings").innerText = selectedTopping;
+document.getElementById("span#total-order").innerText = "$" + order.orderSummary();
 }
+
+
 
 window.addEventListener("load", function() {
   document.querySelector("form#pizzaOrder").addEventListener("submit", displayOrderSummary);
