@@ -2,12 +2,10 @@
 
 //Business Logic for Pizza
 function Pizza(size) {
-  this.pizzaSize = size;
-  this.addTopping = [];
+  this.size = size;
+  this.toppings = [];
 }
 
-Pizza.prototype.addToppings = function () {
-  this.addTopping.push();
+Pizza.prototype.addToppings = function (topping) {
+  this.toppings.push(topping);
 }
-
-const myPizza = new Pizza("medium", ["anchovies", "pineapple"]);
