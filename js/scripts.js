@@ -13,7 +13,9 @@ Order.prototype.pizzaSelection = function(pizza) {
 
 Order.prototype.orderSummary = function() {
   let totalAmount = 0;
-  totalAmount += this.pricePerSize;
+  this.pizzas.forEach(function(pizza) {
+    totalAmount += pizza.pricePerSize();
+    });
 }
 
 //Business Logic for Pizza
@@ -43,3 +45,22 @@ Pizza.prototype.pricePerSize = function() {
   })
   return this.price;
 }
+
+// UI Logic
+
+let order = new Order();
+
+function displayOrderSummary(event) {
+  event.preventDefault();
+
+  const orderName = document.getElementById("name").value;
+  const orderPhoneNum = document.getElementById("phone-number").value;
+  // let newOrder = new Order(orderName, orderPhoneNum)
+
+
+  document.querySelector("span#name").innerText = orderName;
+}
+
+window.addEventListener("load", function() {
+  document.querySelector("form#pizzaOrder").addEventListener("submit", displayOrderSummary);
+})

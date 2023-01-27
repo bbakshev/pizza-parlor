@@ -19,29 +19,29 @@
       </div>
       <div class="form-group">
         <h3>Pizza Size:</h3>
-        <input type="checkbox" name="pie-size" value="small-12">Small. $12 <br>
-        <input type="checkbox" name="pie-size" value="medium-14">Medium. $14<br>
-        <input type="checkbox" name="pie-size" value="large-16">Large. $16<br>
-        <input type="checkbox" name="pie-size" value="extra-large-18">Extra Large. $18 <br>
+        <input type="radio" name="pie-size" value="small-12" checked>Small. $12 <br>
+        <input type="radio" name="pie-size" value="medium-14">Medium. $14<br>
+        <input type="radio" name="pie-size" value="large-16">Large. $16<br>
+        <input type="radio" name="pie-size" value="extra-large-18">Extra Large. $18 <br>
       </div>
       <div class="form-group">
         <h3>Pizza Toppings</h3>
         <p>(choose any topping for $2 each)</p>
-        <input type="checkbox" name="meat-toppings" value="prosciutto-2">Prosciutto<br>
-        <input type="checkbox" name="meat-toppings" value="pepperoni-2">Pepperoni<br>
-        <input type="checkbox" name="meat-toppings" value="chicken-2">Chicken<br>
-        <input type="checkbox" name="veg-toppings" value="mushrooms-1">Mushrooms<br>
-        <input type="checkbox" name="veg-toppings" value="onions-1">Onions<br>
-        <input type="checkbox" name="veg-toppings" value="peppers-1">Peppers<br><br>
+        <input type="radio" name="toppings" value="prosciutto-2" checked>Prosciutto<br>
+        <input type="radio" name="toppings" value="pepperoni-2">Pepperoni<br>
+        <input type="radio" name="toppings" value="chicken-2">Chicken<br>
+        <input type="radio" name="toppings" value="mushrooms-1">Mushrooms<br>
+        <input type="radio" name="toppings" value="onions-1">Onions<br>
+        <input type="radio" name="toppings" value="peppers-1">Peppers<br><br>
       </div>
-      <button type="submit" class="btn btn-success" id="order">Place Your Order</button>
+      <button type="submit" class="btn" id="order">Place Your Order</button>
     </form>
     <div id="order-summary">
       <h3>Order Summary</h3>
-        <p>Name:<span class="name"></span></p>
-        <p>Phone Number:<span class="phone-number"></span></p>
-        <p>Pizza Size:<span class="pie-size"></span></p>
-        <p>Pizza Toppings:<span class="pizza-toppings-toppings"></span></p>
+        <p>Name: <span id="name"></span></p>
+        <p>Phone Number: <span id="phone-number"></span></p>
+        <p>Pizza Size: <span id="pie-size"></span></p>
+        <p>Pizza Toppings: <span id="pizza-toppings-toppings"></span></p>
         <p>Total Order: <span id="total-order"></span></p> 
     </div>
   </div>
