@@ -1,5 +1,8 @@
 // Business Logic
 
+//Business Logic for Total Order
+
+
 //Business Logic for Pizza
 function Pizza(size) {
   this.size = size;
@@ -12,8 +15,6 @@ Pizza.prototype.addToppings = function (topping) {
 }
 
 Pizza.prototype.pricePerSize = function() {
-  const price = 0
-
   if(this.size === "small") {
     this.price = 12;
   } else if (this.size === "medium") {
@@ -23,10 +24,9 @@ Pizza.prototype.pricePerSize = function() {
   } else if (this.size === "extra large") {
     this.price = 18;
   }
-
+  const priceForTopping = this;
   this.toppings.forEach(function() {
-    this.price += 2;
+    priceForTopping.price += 2;
   })
-
   return this.price;
 }
