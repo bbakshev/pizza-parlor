@@ -7,16 +7,13 @@ function Order(firstName, phoneNumber) {
   this.pizzas = [];
 }
 
-Order.prototype.numberOfPizza = function(pizza) {
+Order.prototype.pizzaSelection = function(pizza) {
   this.pizzas.push(pizza);
 }
 
-Order.prototype.calculateTotal = function() {
-  let total = 0;
-  this.pizzas.forEach(pizza => {
-    total += pizza.pricePerSize();
-  });
-  return total;
+Order.prototype.orderSummary = function() {
+  let totalAmount = 0;
+  totalAmount += this.pricePerSize;
 }
 
 //Business Logic for Pizza
