@@ -49,16 +49,27 @@ Pizza.prototype.pricePerSize = function() {
 // UI Logic
 
 let order = new Order();
+let pizzaSelect = new Pizza();
 
 function displayOrderSummary(event) {
   event.preventDefault();
 
   const orderName = document.getElementById("name").value;
   const orderPhoneNum = document.getElementById("phone-number").value;
-  // let newOrder = new Order(orderName, orderPhoneNum)
+  order = (orderName, orderPhoneNum)
 
+  let selectedPizzaSize = document.querySelector('input[name="pie-size"]:checked').value;
+  let selectedTopping = document.querySelector('input[name="toppings"]:checked').value;
+
+  pizzaSelect = new Pizza(selectedPizzaSize);
+  pizzaSelect.addToppings(selectedTopping);
+  order.pizzaSelection(pizzaSelect);
 
   document.querySelector("span#name").innerText = orderName;
+  document.querySelector("span#phone-number").innerText = orderPhoneNum;
+  document.getElementById("span#pie-size").innerText = selectedPizzaSize;
+  document.getElementById("span#pizza-toppings-toppings").innerText = selectedTopping;
+  document.getElementById("span#total-order").innerText = "$" + order.orderSummary();
 }
 
 window.addEventListener("load", function() {
