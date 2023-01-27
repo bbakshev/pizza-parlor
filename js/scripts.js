@@ -1,7 +1,23 @@
 // Business Logic
 
-//Business Logic for Total Order
+//Business Logic for the Order
+function Order(firstName, phoneNumber) {
+  this.firstName = firstName;
+  this.phoneNumber = phoneNumber;
+  this.pizzas = [];
+}
 
+Order.prototype.numberOfPizza = function(pizza) {
+  this.pizzas.push(pizza);
+}
+
+Order.prototype.calculateTotal = function() {
+  let total = 0;
+  this.pizzas.forEach(pizza => {
+    total += pizza.pricePerSize();
+  });
+  return total;
+}
 
 //Business Logic for Pizza
 function Pizza(size) {
