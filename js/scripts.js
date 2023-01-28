@@ -20,6 +20,7 @@ function Pizza(size) {
 
 Pizza.prototype.addToppings = function (topping) {
   this.toppings.push(topping);
+  return this.toppings;
 };
 
 Pizza.prototype.pricePerSize = function () {
@@ -48,13 +49,16 @@ function displayOrderSummary(event) {
 
   let pizzaSize = document.querySelector('input[name="pizza-size"]:checked').value;
   let pizza = new Pizza(pizzaSize);
-  order.pizzaSelection(pizza);
-
   let toppingInputs = document.querySelectorAll('input[name="toppings"]:checked');
   let toppings = [];
-  toppingInputs.forEach(input => toppings.push(input.value));
-  pizza.addToppings(toppings);
+  for (let i = 0; i < toppingInputs.length; i++) {
+    toppings.push(toppingInputs[i].value);
+  }
+  for (let i = 0; i < toppings.length; i++) {
+    pizza.addToppings(toppings[i]);
+  }
   pizza.pricePerSize();
+  order.pizzaSelection(pizza);
 
   document.getElementById("name1").innerHTML = order.firstName;
   document.getElementById("phone-number1").innerHTML = order.phoneNumber;
