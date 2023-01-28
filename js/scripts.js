@@ -16,6 +16,7 @@ Order.prototype.orderSummary = function() {
   this.pizzas.forEach(function(pizza) {
     totalAmount += pizza.pricePerSize();
     });
+  return totalAmount;
 }
 
 //Business Logic for Pizza
@@ -26,7 +27,7 @@ function Pizza(size) {
 }
 
 Pizza.prototype.addToppings = function (topping) {
-  this.toppings.push(topping);
+  this.toppings = topping;
 }
 
 Pizza.prototype.pricePerSize = function() {
@@ -39,10 +40,9 @@ Pizza.prototype.pricePerSize = function() {
   } else if (this.size === "extra large") {
     this.price = 18;
   }
-  const priceForTopping = this;
   this.toppings.forEach(function() {
-    priceForTopping.price += 2;
-  })
+    this.price += 2;
+  });
   return this.price;
 }
 
@@ -56,7 +56,7 @@ event.preventDefault();
 
 const nameInput = document.getElementById("name").value;
 const phoneNumberInput = document.getElementById("phone-number").value;
-const pizzaSizeInputs = document.getElementsByName("pie-size").value;
+const pizzaSizeInputs = document.getElementsByName("pie-size");
 const pizzaToppingInputs = document.getElementsByName("toppings");
 
 order = new Order(nameInput, phoneNumberInput);
@@ -83,12 +83,18 @@ let selectedPizzaSize;
 
 document.querySelector("span#name").innerText = nameInput;
 document.querySelector("span#phone-number").innerText = phoneNumberInput;
-document.getElementById("span#pie-size").innerText = selectedPizzaSize;
-document.getElementById("span#pizza-toppings-toppings").innerText = selectedTopping;
+document.getElementById("span#pie-size").innerHTML = selectedPizzaSize.split("-")[0];
+document.getElementById("span#pizza-toppings").innerText = selectedToppings.join(', ');
 document.getElementById("span#total-order").innerText = "$" + order.orderSummary();
 }
 
-
+Order.prototype.orderSummary = function() {
+  let totalAmount = 0;
+  this.pizzas.forEach(function(pizza) {
+  totalAmount += pizza.pricePerSize();
+  });
+  return totalAmount;
+  }
 
 window.addEventListener("load", function() {
   document.querySelector("form#pizzaOrder").addEventListener("submit", displayOrderSummary);
