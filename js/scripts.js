@@ -7,95 +7,63 @@ function Order(firstName, phoneNumber) {
   this.pizzas = [];
 }
 
-Order.prototype.pizzaSelection = function(pizza) {
+Order.prototype.pizzaSelection = function (pizza) {
   this.pizzas.push(pizza);
-}
-
-Order.prototype.orderSummary = function() {
-  let totalAmount = 0;
-  this.pizzas.forEach(function(pizza) {
-    totalAmount += pizza.pricePerSize();
-    });
-  return totalAmount;
-}
+};
 
 //Business Logic for Pizza
 function Pizza(size) {
   this.size = size;
   this.toppings = [];
-  this.price = 0
+  this.price = 0;
 }
 
 Pizza.prototype.addToppings = function (topping) {
-  this.toppings = topping;
-}
+  this.toppings.push(topping);
+};
 
-Pizza.prototype.pricePerSize = function() {
-  if(this.size === "small") {
-    this.price = 12;
-  } else if (this.size === "medium") {
-    this.price = 14;
-  } else if (this.size === "large") {
-    this.price = 16;
-  } else if (this.size === "extra large") {
-    this.price = 18;
-  }
-  this.toppings.forEach(function() {
-    this.price += 2;
+Pizza.prototype.pricePerSize = function () {
+  this.price = 0;
+  this.sizePrice = { small: 12, medium: 14, large: 16, extra: 18 };
+  this.price = this.sizePrice[this.size] + ((this.toppings.length) * 2);
+};
+
+Order.prototype.orderSummary = function () {
+  let totalPrice = 0;
+  this.pizzas.forEach(function (pizza) {
+    pizza.pricePerSize();
+    totalPrice += pizza.price;
   });
-  return this.price;
-}
+  return totalPrice;
+};
 
 // UI Logic
 
-let order = new Order();
-let pizzaSelect = new Pizza();
-
 function displayOrderSummary(event) {
-event.preventDefault();
+  event.preventDefault();
 
-const nameInput = document.getElementById("name").value;
-const phoneNumberInput = document.getElementById("phone-number").value;
-const pizzaSizeInputs = document.getElementsByName("pizza-size");
-const pizzaToppingInputs = document.getElementsByName("toppings");
+  const nameInput = document.getElementById("name").value;
+  const phoneNumberInput = document.getElementById("phone-number").value;
+  let order = new Order(nameInput, phoneNumberInput);
 
-order = new Order(nameInput, phoneNumberInput);
+  let pizzaSize = document.querySelector('input[name="pizza-size"]:checked').value;
+  let pizza = new Pizza(pizzaSize);
+  order.pizzaSelection(pizza);
 
-let selectedPizzaSize;
-  for (let i = 0; i < pizzaSizeInputs.length; i++) {
-    if (pizzaSizeInputs[i].checked) {
-      selectedPizzaSize = pizzaSizeInputs[i].value;
-    }
-  }
+  let toppingInputs = document.querySelectorAll('input[name="toppings"]:checked');
+  let toppings = [];
+  toppingInputs.forEach(input => toppings.push(input.value));
+  pizza.addToppings(toppings);
+  pizza.pricePerSize();
 
-  pizzaSelect = new Pizza(selectedPizzaSize);
+  document.getElementById("name1").innerHTML = order.firstName;
+  document.getElementById("phone-number1").innerHTML = order.phoneNumber;
+  document.getElementById("pizza-size").innerHTML = pizza.size;
+  document.getElementById("pizza-toppings").innerHTML = pizza.toppings.join(", ");
+  document.getElementById("total-order").innerHTML = "$" + order.orderSummary();
 
-  let selectedToppings = [];
-  for (let i = 0; i < pizzaToppingInputs.length; i++) {
-    if (pizzaToppingInputs[i].checked) {
-      selectedToppings.push(pizzaToppingInputs[i].value);
-    }
-  }
-
-  pizzaSelect.addToppings(selectedToppings);
-  order.pizzaSelection(pizzaSelect);
-
-
-document.querySelector("span#name1").innerText = nameInput;
-document.querySelector("span#phone-number1").innerText = phoneNumberInput;
-document.querySelector("span#pizza-size").innerText = selectedPizzaSize.split("-")[0];
-document.querySelector("span#pizza-toppings").innerText = selectedToppings.join(', ');
-document.querySelector("span#total-order").innerText = "$" + order.orderSummary();
 }
 
-Order.prototype.orderSummary = function() {
-  let totalAmount = 0;
-  this.pizzas.forEach(function(pizza) {
-  totalAmount += pizza.pricePerSize();
-  });
-  return totalAmount;
-  }
-
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
   document.querySelector("form#pizzaOrder").addEventListener("submit", displayOrderSummary);
-})
+});

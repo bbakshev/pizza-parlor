@@ -30,7 +30,7 @@ Once the code is completed, open the index.html in your browser by double clicki
 
 ## Known Bugs
 
-The only known bug in this program is that the Total Amount displays as $0 despite selecting a pizza size with the correct price.
+The only known bug in this program is that the Total Amount displays as $NaN despite selecting a pizza size with the correct price.
 
 ## TDD
 
