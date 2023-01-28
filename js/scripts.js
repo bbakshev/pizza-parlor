@@ -56,7 +56,7 @@ event.preventDefault();
 
 const nameInput = document.getElementById("name").value;
 const phoneNumberInput = document.getElementById("phone-number").value;
-const pizzaSizeInputs = document.getElementsByName("pie-size");
+const pizzaSizeInputs = document.getElementsByName("pizza-size");
 const pizzaToppingInputs = document.getElementsByName("toppings");
 
 order = new Order(nameInput, phoneNumberInput);
@@ -81,11 +81,11 @@ let selectedPizzaSize;
   order.pizzaSelection(pizzaSelect);
 
 
-document.querySelector("span#name").innerText = nameInput;
-document.querySelector("span#phone-number").innerText = phoneNumberInput;
-document.getElementById("span#pie-size").innerHTML = selectedPizzaSize.split("-")[0];
-document.getElementById("span#pizza-toppings").innerText = selectedToppings.join(', ');
-document.getElementById("span#total-order").innerText = "$" + order.orderSummary();
+document.querySelector("span#name1").innerText = nameInput;
+document.querySelector("span#phone-number1").innerText = phoneNumberInput;
+document.querySelector("span#pizza-size").innerText = selectedPizzaSize.split("-")[0];
+document.querySelector("span#pizza-toppings").innerText = selectedToppings.join(', ');
+document.querySelector("span#total-order").innerText = "$" + order.orderSummary();
 }
 
 Order.prototype.orderSummary = function() {
