@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
   <link href="css/styles.css" rel="stylesheet" type="text/css">
   <script src="js/scripts.js"></script>
   <title>Pizza Parlor</title>
 </head>
+
 <body>
   <div class="container">
     <div class="jumbotron">
@@ -13,37 +15,68 @@
     <form id="pizzaOrder">
       <div class="form-group">
         <label for="name">Name</label>
-      <input type="text" id="name">
+        <input type="text" id="name">
         <label for="phone-number">Phone Number</label>
-      <input type="text" id="phone-number">
+        <input type="text" id="phone-number">
       </div>
       <div class="form-group">
         <h3>Pizza Size:</h3>
-        <input type="radio" name="pizza-size" id="small" value="Small" checked>Small $12 <br>
-        <input type="radio" name="pizza-size" id="medium" value="Medium">Medium $14<br>
-        <input type="radio" name="pizza-size" id="large" value="Large">Large $16<br>
-        <input type="radio" name="pizza-size" id="extra" value="Extra Large">Extra Large $18 <br>
+        <label>
+          <input type="radio" name="pizza-size" value="small" checked>
+          Small $12
+        </label>
+        <label>
+          <input type="radio" name="pizza-size" value="medium">
+          Medium $14
+        </label>
+        <label>
+          <input type="radio" name="pizza-size" value="large">
+          Large $16
+        </label>
+        <label>
+          <input type="radio" name="pizza-size" value="extra">
+          Extra Large $18
+        </label><br>
       </div>
       <div class="form-group">
         <h3>Pizza Toppings</h3>
         <p>(choose any topping for $2 each)</p>
-        <input type="radio" name="toppings" id="prosciutto" value="Prosciutto" checked>Prosciutto<br>
-        <input type="radio" name="toppings" id="pepperoni" value="Pepperoni">Pepperoni<br>
-        <input type="radio" name="toppings" id="chicken" value="Chicken">Chicken<br>
-        <input type="radio" name="toppings" id="mushroom" value="Mushrooms">Mushrooms<br>
-        <input type="radio" name="toppings" id="onions" value="Onions">Onions<br>
-        <input type="radio" name="toppings" id="peppers" value="Peppers">Peppers<br><br>
+        <label>
+          <input type="radio" name="toppings" value="prosciutto" checked>
+          Prosciutto
+        </label>
+        <label>
+          <input type="radio" name="toppings" value="pepperoni">
+          Pepperoni
+        </label>
+        <label>
+          <input type="radio" name="toppings" value="chicken">
+          Chicken
+        </label>
+        <label>
+          <input type="radio" name="toppings" value="mushrooms">
+          Mushrooms
+        </label>
+        <label>
+          <input type="radio" name="toppings" value="onions">
+          Onions
+        </label>
+        <label>
+          <input type="radio" name="toppings" value="peppers">
+          Peppers
+        </label>
       </div>
       <button type="submit" class="btn" id="order">Place Your Order</button>
     </form>
     <div id="order-summary">
       <h3>Order Summary</h3>
-        <p>Name: <span id="name1"></span></p>
-        <p>Phone Number: <span id="phone-number1"></span></p>
-        <p>Pizza Size: <span id="pizza-size"></span></p>
-        <p>Pizza Toppings: <span id="pizza-toppings"></span></p>
-        <p>Total: <span id="total-order"></span></p> 
+      <p>Name: <span id="name1"></span></p>
+      <p>Phone Number: <span id="phone-number1"></span></p>
+      <p>Pizza Size: <span id="pizza-size"></span></p>
+      <p>Pizza Toppings: <span id="pizza-toppings"></span></p>
+      <p>Total: <span id="total-order"></span></p>
     </div>
   </div>
 </body>
+
 </html>

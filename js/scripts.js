@@ -26,7 +26,7 @@ Pizza.prototype.addToppings = function (topping) {
 Pizza.prototype.pricePerSize = function () {
   this.price = 0;
   this.sizePrice = { small: 12, medium: 14, large: 16, extra: 18 };
-  this.price = this.sizePrice[this.size] + ((this.toppings.length) * 2);
+  this.price = parseFloat(this.sizePrice[this.size]) + ((this.toppings.length) * 2);
 };
 
 Order.prototype.orderSummary = function () {
@@ -64,7 +64,7 @@ function displayOrderSummary(event) {
   document.getElementById("phone-number1").innerHTML = order.phoneNumber;
   document.getElementById("pizza-size").innerHTML = pizza.size;
   document.getElementById("pizza-toppings").innerHTML = pizza.toppings.join(", ");
-  document.getElementById("total-order").innerHTML = "$" + order.orderSummary();
+  document.getElementById("total-order").innerHTML = "$" + parseFloat(order.orderSummary()).toFixed(2);
 
 }
 
